@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "commander": "^12.1.0",
+    "lodash": "^4.17.21",
     "make": "^0.8.1"
   },
   "bin": {
