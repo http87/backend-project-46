@@ -1,19 +1,18 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import _ from 'lodash';
-// import { cwd } from'node:process';
 
 const getContent = (pathFilename) => {
   const splitPath = pathFilename.split('/');
   const filename = splitPath[splitPath.length - 1];
   const getFixturePath = (file) => path.resolve('__fixtures__', file);
   const readFile = (file) => readFileSync(getFixturePath(file), 'utf-8');
-  return readFile(filename);
+  return JSON.parse(readFile(filename));
 };
 
 export default (fileName1, fileName2) => {
-  const data1 = JSON.parse(getContent(fileName1));
-  const data2 = JSON.parse(getContent(fileName2));
+  const data1 = getContent(fileName1);
+  const data2 = getContent(fileName2);
 
   const keys1 = Object.keys(data1);
   const keys2 = Object.keys(data2);
@@ -34,3 +33,5 @@ export default (fileName1, fileName2) => {
   });
   return ['{', ...result, '}'].join('\n');
 };
+
+export { getContent };
