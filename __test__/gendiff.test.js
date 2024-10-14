@@ -1,7 +1,5 @@
 import genDiff, { getContent } from '../src/gendiff.js';
 
-const data1 = getContent('file1.json');
-const data2 = getContent('file2.json');
 const file1 = 'file1.json';
 const file2 = 'file2.json';
 
