@@ -15,5 +15,8 @@ link-sudo:
 lint:
 	npx eslint .
 
-test-coverage:
+test:
 	NODE_OPTIONS=--experimental-vm-modules npx jest
+
+test-coverage:
+	npx jest --coverage
