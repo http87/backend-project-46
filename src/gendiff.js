@@ -20,20 +20,17 @@ export default (fileName1, fileName2) => {
   const keys = _.union(keys1, keys2);
   const sortedKeys = _.sortBy(keys);
 
-  const diff = [];
-  diff.push(`{`);
   const result = sortedKeys.map((key) => {
     if (!Object.hasOwn(data1, key)) {
-      diff.push(`  + ${key}: ${data2[key]}`);
-    } else if (!Object.hasOwn(data2, key)) {
-      diff.push(`  - ${key}: ${data1[key]}`);
-    } else if (data1[key] !== data2[key]) {
-      diff.push(`  - ${key}: ${data1[key]}`);
-      diff.push(`  + ${key}: ${data2[key]}`);
-    } else {
-      diff.push(`    ${key}: ${data2[key]}`);
+      return `  + ${key}: ${data2[key]}`;
     }
+    if (!Object.hasOwn(data2, key)) {
+      return `  - ${key}: ${data1[key]}`;
+    }
+    if (data1[key] !== data2[key]) {
+      return `  - ${key}: ${data1[key]}\n  + ${key}: ${data2[key]}`;
+    }
+    return `    ${key}: ${data2[key]}`;
   });
-  diff.push(`}`);
-  return diff.join('\n');
+  return ['{', ...result, '}'].join('\n');
 };
