@@ -1,7 +1,14 @@
 import genDiff from '../src/gendiff.js';
 
-const file1 = 'file1.json';
-const file2 = 'file2.json';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+//const readFixtureFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 const result = `{
   - follow: false
@@ -13,5 +20,7 @@ const result = `{
 }`;
 
 test('JSON compare', () => {
+  const file1 = getFixturePath('file1.json').trim();
+  const file2 = getFixturePath('file2.json').trim();
   expect(genDiff(file1, file2)).toEqual(result);
 });
