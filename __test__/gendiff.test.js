@@ -22,3 +22,9 @@ test('JSON compare', () => {
   const file2 = getFixturePath('file2.json').trim();
   expect(genDiff(file1, file2)).toEqual(result);
 });
+
+test('YML compare', () => {
+  const file1 = getFixturePath('file1.yaml').trim();
+  const file2 = getFixturePath('file2.yaml').trim();
+  expect(genDiff(file1, file2)).toEqual(result);
+});
