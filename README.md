@@ -5,3 +5,4 @@
 
 ### ШАГ 6, плоское сравнение YAML (YML) файлов
 [![asciicast](https://asciinema.org/a/tgAUQHPVyi9vtnShSvX69X8sJ.svg)](https://asciinema.org/a/tgAUQHPVyi9vtnShSvX69X8sJ)
+

@@ -22,5 +22,6 @@ export default (fileName1, fileName2) => {
     }
     return `    ${key}: ${data2[key]}`;
   });
+
   return ['{', ...result, '}'].join('\n');
 };
