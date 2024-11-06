@@ -1,5 +1,31 @@
 import _ from 'lodash';
-import stringify from './index.js';
+
+const stringify = (data, spacesCount = 4, replacer = ' ') => {
+  const iter = (currentValue, depth) => {
+    if (!_.isObject(currentValue)) {
+      return `${currentValue}`;
+    }
+
+    let indentDuetoSpetialCharts = 0;
+    if (depth > 1) {
+      indentDuetoSpetialCharts = 4 * (depth - 1);
+    }
+    const indentSize = depth * spacesCount - indentDuetoSpetialCharts;
+    const currentIndent = replacer.repeat(indentSize);
+    const bracketIndent = replacer.repeat(indentSize - 4);
+
+    const lines = Object
+      .entries(currentValue)
+      .map(([key, val]) => `${currentIndent}${key}: ${iter(val, depth + 1)}`);
+
+    return [
+      '{',
+      ...lines,
+      `${bracketIndent}}`,
+    ].join('\n');
+  };
+  return iter(data, 1);
+};
 
 export default (node1, node2) => {
   const iter = (data1, data2, depth, replacer = ' ', spacesCount = 4) => {
@@ -36,7 +62,7 @@ export default (node1, node2) => {
         }
         return `${currentIndent}- ${key}: ${stringify(data1[key], indentClear)}`;
       }
-      // ключи есть и там и там, но значения не совпадает
+      // ключи есть и там и там, но значения не совпадают
       if (data1[key] !== data2[key]) {
         if (!_.isObject(data1[key]) && !_.isObject(data2[key])) {
           return `${currentIndent}- ${key}: ${data1[key]}\n${currentIndent}+ ${key}: ${data2[key]}`;

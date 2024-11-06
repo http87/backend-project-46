@@ -26,6 +26,6 @@
     "make": "^0.8.1"
   },
   "bin": {
-    "genDiff": "bin/genDiff.js"
+    "genDiff": "bin/gendiff.js"
   }
 }

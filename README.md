@@ -6,5 +6,8 @@
 ### ШАГ 6, плоское сравнение YAML (YML) файлов
 [![asciicast](https://asciinema.org/a/tgAUQHPVyi9vtnShSvX69X8sJ.svg)](https://asciinema.org/a/tgAUQHPVyi9vtnShSvX69X8sJ)
 
-### ШАГ 7, сравнение YAML (YML) файлов - stylish
+### ШАГ 7, сравнение JSON, YAML (YML) файлов - stylish
 [![asciicast](https://asciinema.org/a/SS5vqAnXofRyYInSKhABlJevr.svg)](https://asciinema.org/a/SS5vqAnXofRyYInSKhABlJevr)
+
+### ШАГ 8, сравнение JSON, YAML (YML) файлов - plain
+[![asciicast](https://asciinema.org/a/kOya2gNPdKTF9NkLYLWNDqJaZ.svg)](https://asciinema.org/a/kOya2gNPdKTF9NkLYLWNDqJaZ)

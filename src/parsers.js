@@ -10,13 +10,25 @@ const getContent = (filename) => {
 
 const getExtention = (pathFilename) => {
   const splitPath = pathFilename.split('/');
-  const filename = splitPath[splitPath.length - 1];
+  let filename = splitPath[splitPath.length - 1];
   const extention = path.extname(filename);
-  if (extention === '.yaml' || extention === '.yml') {
-    const json = yaml.load(getContent(filename));
-    return json;
+  if (extention === '.yml') {
+    const fileNameWithoutExt = filename.split('.');
+    filename = `${fileNameWithoutExt[0]}.yaml`;
   }
-  return JSON.parse(getContent(filename));
+  const data = getContent(filename);
+  const extWithoutDot = extention.slice(1);
+  return [data, extWithoutDot];
 };
 
-export default (pathFilename) => getExtention(pathFilename);
+export default (pathFilename) => {
+  const [data, extention] = getExtention(pathFilename);
+
+  const parsers = {
+    json: JSON.parse,
+    yaml: yaml.load,
+    yml: yaml.load,
+  };
+
+  return parsers[extention](data);
+};
