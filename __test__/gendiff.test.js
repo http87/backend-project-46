@@ -36,3 +36,11 @@ test('YML compare - plain', () => {
   const file2 = getFixturePath('file2.yaml').trim();
   expect(genDiff(file1, file2, 'plain')).toEqual(plain);
 });
+
+const resultJSON = JSON.stringify(JSON.parse(readFixtureFile('json.json')));
+
+test('JSON', () => {
+  const file1 = getFixturePath('file1.json').trim();
+  const file2 = getFixturePath('file2.json').trim();
+  expect(genDiff(file1, file2, 'json')).toEqual(resultJSON);
+});

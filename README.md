@@ -11,3 +11,6 @@
 
 ### ШАГ 8, сравнение JSON, YAML (YML) файлов - plain
 [![asciicast](https://asciinema.org/a/kOya2gNPdKTF9NkLYLWNDqJaZ.svg)](https://asciinema.org/a/kOya2gNPdKTF9NkLYLWNDqJaZ)
+
+### ШАГ 9, сравнение JSON, YAML (YML) файлов - json
+[![asciicast](https://asciinema.org/a/ul24hGCkDvmOts5hSee76UhV1.svg)](https://asciinema.org/a/ul24hGCkDvmOts5hSee76UhV1)
