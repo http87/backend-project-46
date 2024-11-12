@@ -1,9 +1,9 @@
 import parse from './parsers.js';
 import formatter from './formatters/index.js';
 
-export default (fileName1, fileName2, formatName) => {
-  const data1 = parse(fileName1);
-  const data2 = parse(fileName2);
+export default (filepath1, filepath2, formatterName) => {
+  const data1 = parse(filepath1);
+  const data2 = parse(filepath2);
 
-  return formatter(formatName, data1, data2);
+  return formatter(formatterName, data1, data2);
 };

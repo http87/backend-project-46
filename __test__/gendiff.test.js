@@ -1,13 +1,13 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import * as fs from 'node:fs';
+import { readFileSync } from 'node:fs';
 import genDiff from '../src/gendiff.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-const readFixtureFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
+const readFixtureFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
 const stylish = readFixtureFile('stylish.txt');
 

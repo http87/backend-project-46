@@ -1,16 +1,15 @@
-import stylish from './stylish.js';
-import plain from './plain.js';
 import json from './json.js';
+
+import genDiffPlain from '../gendiffplain.js';
+import genDiffStylish from '../gendiffstylish.js';
 
 export default (formatName, data1, data2) => {
   switch (formatName) {
-    case 'stylish':
-      return stylish(data1, data2);
     case 'plain':
-      return plain(data1, data2);
+      return genDiffPlain(data1, data2);
     case 'json':
       return json(data1, data2);
     default:
-      return stylish(data1, data2);
+      return genDiffStylish(data1, data2);
   }
 };
