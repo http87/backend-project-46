@@ -2,6 +2,9 @@ import _ from 'lodash';
 
 const getComplexType = (value) => (_.isObject(value) ? '[complex value]' : value);
 const getTypeValue = (value) => {
+  if (typeof value === 'number') {
+    return value;
+  }
   if (typeof value !== 'object' && typeof value !== 'boolean') {
     return `'${value}'`;
   }
