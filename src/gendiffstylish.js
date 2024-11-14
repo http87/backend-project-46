@@ -1,22 +1,24 @@
-import { stringify, indent } from './formatters/stylish.js';
+import stringify from './formatters/stylish.js';
 import createTree from './tree.js';
 
-const buildTreeFormat = (tree, depth = 0) => {
+const indent = (depth, replacer) => replacer.repeat(depth);
+
+const buildTreeFormat = (tree, depth = 0, replacer = '    ') => {
   const result = tree.map((node) => {
     switch (node.type) {
       case 'added':
-        return `  ${indent(depth)}+ ${node.key}: ${stringify(node.value)}`;
+        return `  ${indent(depth, replacer)}+ ${node.key}: ${stringify(node.value, depth)}`;
       case 'removed':
-        return `  ${indent(depth)}- ${node.key}: ${stringify(node.value)}`;
+        return `  ${indent(depth, replacer)}- ${node.key}: ${stringify(node.value, depth)}`;
       case 'changed':
         return [
-          `  ${indent(depth)}- ${node.key}: ${stringify(node.value1)}`,
-          `  ${indent(depth)}+ ${node.key}: ${stringify(node.value2)}`,
+          `  ${indent(depth, replacer)}- ${node.key}: ${stringify(node.value1, depth)}`,
+          `  ${indent(depth, replacer)}+ ${node.key}: ${stringify(node.value2, depth)}`,
         ].join('\n');
       case 'unchanged':
-        return `  ${indent(depth)}  ${node.key}: ${stringify(node.value)}`;
+        return `  ${indent(depth, replacer)}  ${node.key}: ${stringify(node.value, depth)}`;
       case 'nested':
-        return `  ${indent(depth)}  ${node.key}: {\n${buildTreeFormat(node.children, depth + 1)}\n${indent(depth)}    }`;
+        return `  ${indent(depth, replacer)}  ${node.key}: {\n${buildTreeFormat(node.children, depth + 1)}\n${indent(depth, replacer)}    }`;
       default:
         throw new Error('Error');
     }

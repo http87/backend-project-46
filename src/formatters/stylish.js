@@ -1,25 +1,23 @@
 import _ from 'lodash';
 
-const indent = (depth) => '    '.repeat(depth);
+const stringify = (value, spacesCount, replacer = '    ') => {
+  if (!_.isObject(value)) {
+    return `${value}`;
+  }
 
-const stringify = (value, spacesCount = 1, replacer = '    ') => {
-  const iter = (currentValue, depth) => {
-    if (!_.isObject(currentValue)) {
-      return `${currentValue}`;
-    }
-    const indentSize = depth * spacesCount + 1;
-    const bracketIndent = replacer.repeat(indentSize - spacesCount);
-    const lines = Object
-      .entries(currentValue)
-      .map(([key, val]) => `${indent(indentSize)}${key}: ${iter(val, depth + 1)}`);
+  const indentSize = spacesCount + 2;
+  const indentReplacer = replacer.repeat(indentSize);
+  const bracketIndent = replacer.repeat(spacesCount + 1);
 
-    return [
-      '{',
-      ...lines,
-      `${bracketIndent}}`,
-    ].join('\n');
-  };
-  return iter(value, 1);
+  const lines = Object
+    .entries(value)
+    .map(([key, val]) => `${indentReplacer}${key}: ${stringify(val, spacesCount + 1)}`);
+
+  return [
+    '{',
+    ...lines,
+    `${bracketIndent}}`,
+  ].join('\n');
 };
 
-export { stringify, indent };
+export default stringify;
