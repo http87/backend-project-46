@@ -50,11 +50,15 @@ make publish
 
 npm link
 ```
-6. В терминале введите: gendiff filepath1.yml filepath2.yml
-Где filepath1 и filepath2 - пути до файлов, как абсолютные так и относительные.
-Доступные расширения: yaml (yml), json.
+6. В терминале введите: **gendiff filepath1.yml filepath2.yml**
+
+Где **filepath1** и **filepath2** - пути до файлов, как абсолютные так и относительные.
+
+Доступные расширения: **yaml (yml), json**.
 
 7. Options:
+```
     -V, --version        output the version number
     -f, --format [type]  output format
     -h, --help           output usage information
+```
