@@ -1,15 +1,15 @@
 import json from './json.js';
-
-import genDiffPlain from '../gendiffplain.js';
-import genDiffStylish from '../gendiffstylish.js';
+import plain from './plain.js';
+import stylish from './stylish.js';
+import createTree from '../tree.js';
 
 export default (formatName, data1, data2) => {
   switch (formatName) {
     case 'plain':
-      return genDiffPlain(data1, data2);
+      return plain(createTree(data1, data2));
     case 'json':
-      return json(data1, data2);
+      return json(createTree(data1, data2));
     default:
-      return genDiffStylish(data1, data2);
+      return stylish(createTree(data1, data2));
   }
 };
