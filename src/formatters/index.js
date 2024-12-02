@@ -12,6 +12,6 @@ export default (data1, data2, formatName = 'stylish') => {
     case 'json':
       return json(createTree(data1, data2));
     default:
-      console.log('Вы выбрали неверные формат. Возможные варианты: stylish, plain, json.');
+      return 'Вы выбрали неверные формат. Возможные варианты: stylish, plain, json.';
   }
 };
