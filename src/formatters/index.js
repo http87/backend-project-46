@@ -3,13 +3,15 @@ import plain from './plain.js';
 import stylish from './stylish.js';
 import createTree from '../tree.js';
 
-export default (formatName, data1, data2) => {
+export default (data1, data2, formatName = 'stylish') => {
   switch (formatName) {
+    case 'stylish':
+      return stylish(createTree(data1, data2));
     case 'plain':
       return plain(createTree(data1, data2));
     case 'json':
       return json(createTree(data1, data2));
     default:
-      return stylish(createTree(data1, data2));
+      console.log('Вы выбрали неверные формат. Возможные варианты: stylish, plain, json.');
   }
 };
